@@ -1,21 +1,17 @@
 import { useState } from 'react';
 
 const ContactForm = () => {
-  // State for form data
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
 
-  // State for validation errors
   const [errors, setErrors] = useState({});
 
-  // State for form submission
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -24,7 +20,6 @@ const ContactForm = () => {
     });
   };
 
-  // Validate form inputs
   const validateForm = () => {
     const newErrors = {};
     
@@ -48,7 +43,6 @@ const ContactForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -56,7 +50,6 @@ const ContactForm = () => {
       setIsSubmitting(true);
       
       try {
-        // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1500));
         
         setSubmitStatus({
@@ -64,7 +57,6 @@ const ContactForm = () => {
           message: 'Thank you! Your message has been sent successfully.'
         });
         
-        // Reset form
         setFormData({
           name: '',
           email: '',
@@ -86,7 +78,6 @@ const ContactForm = () => {
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Us</h2>
       
-      {/* Submission status message */}
       {submitStatus && (
         <div className={`mb-4 p-4 rounded-md ${
           submitStatus.success 
@@ -98,7 +89,6 @@ const ContactForm = () => {
       )}
       
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name Field */}
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Full Name
@@ -121,7 +111,6 @@ const ContactForm = () => {
           )}
         </div>
         
-        {/* Email Field */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
             Email Address
@@ -144,7 +133,6 @@ const ContactForm = () => {
           )}
         </div>
         
-        {/* Message Field */}
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
             Your Message
@@ -167,7 +155,6 @@ const ContactForm = () => {
           )}
         </div>
         
-        {/* Submit Button */}
         <div>
           <button
             type="submit"
